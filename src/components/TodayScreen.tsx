@@ -72,7 +72,7 @@ export function TodayScreen({ now, onToast, onGoSettings }: { now: Date; onToast
           <span className="text-sm">
             <b>Napping</b> since {formatClock(nap.at)} · {formatDuration((now.getTime() - Date.parse(nap.at)) / 60_000)}
           </span>
-          <Button variant="secondary" className="min-h-10 px-4 text-sm" onClick={() => onToast(apply((d) => endNap(d, nap.id, new Date().toISOString(), new Date())) ?? "Woke up")}>
+          <Button variant="secondary" className="min-h-10 shrink-0 whitespace-nowrap px-4 text-sm" onClick={() => onToast(apply((d) => endNap(d, nap.id, new Date().toISOString(), new Date())) ?? "Woke up")}>
             Woke up now
           </Button>
         </div>

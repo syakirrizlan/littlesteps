@@ -1,0 +1,37 @@
+{
+  "name": "littlesteps",
+  "productName": "LittleSteps",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Private childcare diary: drop-off, pickup and daily care notes, encrypted on your own phone",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "node scripts/serve-static.mjs",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:tz": "TZ=America/New_York vitest run tests/unit/time.test.ts tests/unit/attendance.test.ts tests/unit/report.test.ts && TZ=Pacific/Kiritimati vitest run tests/unit/time.test.ts tests/unit/attendance.test.ts tests/unit/report.test.ts",
+    "test:e2e": "playwright test --trace off",
+    "check": "npm run lint && npm run typecheck && npm test && npm run test:tz && npm run build && npm run test:e2e"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@tailwindcss/turbopack": "4.3.3",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "happy-dom": "^21.0.4",
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "^5",
+    "vitest": "^5.1.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

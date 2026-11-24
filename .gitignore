@@ -1,0 +1,37 @@
+# --- Secrets ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- Real childcare data: never commit it ---
+# Backups and exports made by the app
+*.littlesteps
+littlesteps-*.csv
+*.csv
+data/
+!tests/fixtures/**
+
+# --- Dependencies & builds ---
+node_modules/
+coverage/
+playwright-report/
+test-results/
+blob-report/
+
+# --- Editors & OS ---
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.log
+
+# --- Next.js ---
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+.vercel

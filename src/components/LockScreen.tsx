@@ -5,6 +5,7 @@ import { createVault, eraseEverything, lockoutRemaining, LockedOutError, passcod
 import { passcodeStrength } from "@/lib/security/crypto";
 import { emptyCareData } from "@/lib/care/types";
 import { Button, cx, inputClass } from "./ui";
+import { InstallButton } from "./Install";
 import { Logo } from "./Logo";
 
 function PasscodeField({ id, label, value, onChange, autoFocus, autoComplete, invalid }: { id: string; label: string; value: string; onChange: (v: string) => void; autoFocus?: boolean; autoComplete: string; invalid?: boolean }) {
@@ -192,10 +193,13 @@ function UnlockForm() {
 export default function LockScreen({ status }: { status: VaultStatus }) {
   if (status === "loading") return <div className="min-h-dvh bg-background" aria-busy="true" />;
   return (
-    <main className="px-gutter pt-safe pb-safe flex min-h-dvh flex-col items-center justify-center gap-6 py-10">
-      <div className="flex items-center gap-3">
-        <Logo size={44} />
-        <span className="display text-xl">LittleSteps</span>
+    <main className="px-gutter pt-safe pb-safe flex min-h-dvh flex-col items-center justify-center gap-5 py-6">
+      <div className="flex w-full max-w-[420px] items-center justify-between gap-3">
+        <span className="flex items-center gap-3">
+          <Logo size={44} />
+          <span className="display text-xl">LittleSteps</span>
+        </span>
+        <InstallButton />
       </div>
       <div className="animate-rise w-full max-w-[420px] rounded-[28px] border border-line bg-surface p-6 shadow-card sm:p-8">{status === "setup" ? <SetupForm /> : <UnlockForm />}</div>
       <p className="max-w-[420px] text-center text-xs leading-relaxed text-muted">Private to this phone. Nothing you record is sent anywhere.</p>

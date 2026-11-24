@@ -109,7 +109,6 @@
   --color-st-fix-soft: var(--st-fix-soft);
   --color-on-status: var(--on-status);
   --font-sans: var(--font-body);
-  --font-display: var(--font-display);
   --shadow-card: var(--shadow);
 }
 
@@ -126,6 +125,8 @@ body {
 .display { font-family: var(--font-display), system-ui, sans-serif; font-weight: 800; letter-spacing: -0.02em; line-height: 1.08; text-wrap: balance; }
 .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 .figure { font-variant-numeric: tabular-nums; }
+/* Single-line display text (app header): same face as .display, without balanced wrapping. */
+.brand { font-family: var(--font-display), system-ui, sans-serif; font-weight: 800; letter-spacing: -0.01em; }
 
 :focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent); outline-offset: 2px; }
 

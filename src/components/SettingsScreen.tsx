@@ -7,9 +7,9 @@ import { addMedInstruction, addPerson, renamePerson, setChild, setGraceMinutes, 
 import { careDateOf, formatDate } from "@/lib/care/time";
 import type { CareData, PersonRole } from "@/lib/care/types";
 import { saveFile } from "@/lib/files";
-import { isStandalone, promptInstall, useCanInstall } from "@/lib/pwa";
 import { AUTO_LOCK_CHOICES, setAutoLockMinutes, useAutoLockMinutes } from "@/lib/security/autolock";
 import { changePasscode, eraseEverything, lock, makeBackup, NotABackupError, passcodeProblem, readBackup, storedSize, WrongPasscodeError } from "@/lib/security/vault";
+import { InstallButton, useInstalled } from "./Install";
 import { Button, Card, cx, ErrorText, Field, inputClass } from "./ui";
 
 const DAYS = [
@@ -461,19 +461,16 @@ function SecuritySection({ onToast }: { onToast: (m: string) => void }) {
 }
 
 function InstallSection() {
-  const canInstall = useCanInstall();
-  const ios = typeof navigator !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent);
-  if (typeof window !== "undefined" && isStandalone()) return null;
+  const installed = useInstalled();
   return (
-    <Section title="Install on your phone" id="s-install">
-      {canInstall ? (
-        <Button className="self-start" onClick={() => void promptInstall()}>
-          Install LittleSteps
-        </Button>
-      ) : ios ? (
-        <p className="text-sm text-muted">In Safari, tap the Share button, then “Add to Home Screen”. On iPhone, keep using it from the Home Screen icon: Safari can clear data of websites you don&apos;t visit for a while, but not of Home Screen apps.</p>
+    <Section title={installed ? "Installed" : "Install on your phone"} id="s-install">
+      {installed ? (
+        <p className="-mt-2 text-sm text-muted">You&apos;re using the installed app. Keep opening LittleSteps from its icon.</p>
       ) : (
-        <p className="text-sm text-muted">In Chrome, open the ⋮ menu and choose “Install app” or “Add to Home screen”.</p>
+        <>
+          <p className="-mt-2 text-sm text-muted">Install LittleSteps so it opens like an app, works offline, and your diary stays safe from browser clean-ups.</p>
+          <InstallButton variant="block" className="self-start" />
+        </>
       )}
     </Section>
   );

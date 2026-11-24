@@ -36,8 +36,14 @@ No environment variables are needed. Full steps and checks: [docs/deployment.md]
 
 ### Add it to the Home Screen
 
-- **Android (Chrome):** open the address, tap **Install LittleSteps** in Settings, or **⋮ → Install app**.
-- **iPhone (Safari):** open the address, tap **Share → Add to Home Screen**. Always open it from the Home Screen icon. Safari may clear the data of websites you haven't visited for a while, but not of Home Screen apps.
+Open the address in **Chrome (Android)** or **Safari (iPhone)**, not inside WhatsApp, Gmail or Facebook. Those apps' built-in browsers can't install apps.
+
+Tap **Install** at the top of the first screen. It's also in the header and in Settings until the app is installed.
+
+- **Android:** Chrome's own install prompt opens. If Chrome doesn't offer one (for example after you dismissed it), the button shows the steps: **⋮ → Install app**.
+- **iPhone:** Safari has no install prompt, so the button shows the steps: **Share → Add to Home Screen → Add**. Always open it from the Home Screen icon. Safari may clear the data of websites you haven't visited for a while, but not of Home Screen apps.
+
+The button disappears once you're using the installed app.
 
 Then create your passcode and enter the names (child, you, the babysitter) and usual times.
 

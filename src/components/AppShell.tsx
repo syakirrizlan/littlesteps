@@ -5,6 +5,7 @@ import { useCareData } from "@/lib/care/store";
 import { useNow, useRoute, type Route } from "@/lib/hooks";
 import { lock, useVaultSaveError } from "@/lib/security/vault";
 import { DayScreen, DaysScreen } from "./DaysScreen";
+import { InstallButton } from "./Install";
 import { Logo } from "./Logo";
 import { SettingsScreen } from "./SettingsScreen";
 import { TodayScreen } from "./TodayScreen";
@@ -35,13 +36,17 @@ export default function AppShell() {
     <div className="min-h-dvh">
       <header className="pt-safe sticky top-0 z-30 border-b border-line bg-background/90 backdrop-blur">
         <div className="px-gutter mx-auto flex h-14 max-w-2xl items-center justify-between">
-          <button type="button" onClick={() => go({ tab: "today" })} className="flex items-center gap-2.5" aria-label="LittleSteps, go to Today">
+          <button type="button" onClick={() => go({ tab: "today" })} className="flex min-w-0 items-center gap-2.5" aria-label="LittleSteps, go to Today">
             <Logo size={30} />
-            <span className="display text-base">{data.child?.name ? `${data.child.name}'s days` : "LittleSteps"}</span>
+            <span className="brand min-w-0 truncate text-base">{data.child?.name ? `${data.child.name}'s days` : "LittleSteps"}</span>
           </button>
-          <button type="button" onClick={lock} className="inline-flex min-h-10 items-center gap-1.5 rounded-full px-3 text-sm font-semibold text-muted hover:bg-surface-2 hover:text-foreground">
-            <Icon name="lock" size={16} /> Lock
-          </button>
+          <span className="flex shrink-0 items-center gap-1">
+            <InstallButton />
+            <button type="button" onClick={lock} aria-label="Lock" className="inline-flex min-h-10 shrink-0 items-center gap-1.5 rounded-full px-3 text-sm font-semibold text-muted hover:bg-surface-2 hover:text-foreground">
+              <Icon name="lock" size={16} />
+              <span className="max-[399px]:hidden">Lock</span>
+            </button>
+          </span>
         </div>
       </header>
 

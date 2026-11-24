@@ -1,20 +1,19 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { apply, useCareData } from "@/lib/care/store";
 import { addPerson, isSetUp, setChild, setSchedule } from "@/lib/care/setup";
 import type { CareData, Result } from "@/lib/care/types";
-import { startPwa } from "@/lib/pwa";
 import { useAutoLock } from "@/lib/security/autolock";
 import AppShell from "./AppShell";
 import { Logo } from "./Logo";
+import { InstallButton } from "./Install";
 import { BackupSection } from "./SettingsScreen";
 import { Button, cx, ErrorText, Field, inputClass } from "./ui";
 
 export default function App() {
   const data = useCareData();
   useAutoLock();
-  useEffect(() => startPwa(), []);
   return isSetUp(data) ? <AppShell /> : <Onboarding data={data} />;
 }
 
@@ -64,9 +63,12 @@ function Onboarding({ data }: { data: CareData }) {
 
   return (
     <main className="px-gutter pt-safe pb-safe mx-auto flex min-h-dvh max-w-lg flex-col gap-6 py-8">
-      <div className="flex items-center gap-3">
-        <Logo size={40} />
-        <span className="display text-lg">LittleSteps</span>
+      <div className="flex items-center justify-between gap-3">
+        <span className="flex items-center gap-3">
+          <Logo size={40} />
+          <span className="display text-lg">LittleSteps</span>
+        </span>
+        <InstallButton />
       </div>
       <div>
         <p className="eyebrow">Getting started</p>

@@ -173,8 +173,10 @@ export function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
       return <svg {...p}><path d="m15 5-7 7 7 7" /></svg>;
     case "chevron-right":
       return <svg {...p}><path d="m9 5 7 7-7 7" /></svg>;
+    case "install":
+      return <svg {...p}><path d="M12 3v12M7 10l5 5 5-5" /><path d="M5 19h14" /></svg>;
     case "edit":
       return <svg {...p}><path d="M4 20h4L19 9l-4-4L4 16v4Z" /></svg>;
   }
 }
-export type IconName = "meal" | "nap" | "activity" | "health" | "medication" | "incident" | "note" | "today" | "days" | "settings" | "lock" | "plus" | "chevron-left" | "chevron-right" | "edit";
+export type IconName = "meal" | "nap" | "activity" | "health" | "medication" | "incident" | "note" | "today" | "days" | "settings" | "lock" | "plus" | "chevron-left" | "chevron-right" | "edit" | "install";

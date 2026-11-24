@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+/*
+  LittleSteps design system
+  Palette: soft family colours. Morning-sky page, white cards, soft plum for actions,
+  peach and butter as warm accents. Status colours carry meaning and never decorate:
+  grey = not dropped off, green = at the babysitter, blue = picked up, amber = needs a fix.
+  Layout idea: a phone diary. One big status card, two big buttons, then the day's timeline.
+  Same token structure as the Finance Tracker, so both apps are built the same way.
+*/
+:root {
+  --background: #f4f5fa;
+  --surface: #ffffff;
+  --surface-2: #eef0f7;
+  --line: rgba(38, 40, 70, 0.1);
+  --line-strong: rgba(38, 40, 70, 0.22);
+  --foreground: #25263a;
+  --muted: #62667e;
+  --accent: #7a52a6;
+  --accent-hover: #6a4494;
+  --accent-soft: #efe8f7;
+  --on-accent: #ffffff;
+  --peach: #f2b49c;
+  --peach-soft: #fdeee7;
+  --peach-ink: #a24f2c;
+  --butter: #f4d67c;
+  --danger: #b3412f;
+  --danger-soft: #fbe9e5;
+  --st-wait: #7d8197;
+  --st-wait-soft: #eceef4;
+  --st-in: #23835a;
+  --st-in-soft: #dcf1e5;
+  --st-out: #3767b8;
+  --st-out-soft: #e2eaf8;
+  --st-fix: #a8620a;
+  --st-fix-soft: #fcefd9;
+  --on-status: #ffffff;
+  --shadow: 0 14px 34px -22px rgba(40, 36, 80, 0.35);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #16151d;
+    --surface: #201f2a;
+    --surface-2: #292836;
+    --line: rgba(236, 233, 245, 0.1);
+    --line-strong: rgba(236, 233, 245, 0.22);
+    --foreground: #eceaf3;
+    --muted: #a8a4b9;
+    --accent: #c3a5ea;
+    --accent-hover: #d2baf0;
+    --accent-soft: rgba(195, 165, 234, 0.14);
+    --on-accent: #1e1529;
+    --peach: #e9a58b;
+    --peach-soft: rgba(233, 165, 139, 0.14);
+    --peach-ink: #f2b49c;
+    --butter: #e7c86a;
+    --danger: #f0907c;
+    --danger-soft: rgba(240, 144, 124, 0.14);
+    --st-wait: #a2a6ba;
+    --st-wait-soft: rgba(162, 166, 186, 0.14);
+    --st-in: #5fcf97;
+    --st-in-soft: rgba(95, 207, 151, 0.14);
+    --st-out: #86acf0;
+    --st-out-soft: rgba(134, 172, 240, 0.15);
+    --st-fix: #f1b357;
+    --st-fix-soft: rgba(241, 179, 87, 0.15);
+    --on-status: #14131b;
+    --shadow: 0 14px 34px -22px rgba(0, 0, 0, 0.8);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --background: #16151d; --surface: #201f2a; --surface-2: #292836; --line: rgba(236, 233, 245, 0.1); --line-strong: rgba(236, 233, 245, 0.22);
+  --foreground: #eceaf3; --muted: #a8a4b9; --accent: #c3a5ea; --accent-hover: #d2baf0; --accent-soft: rgba(195, 165, 234, 0.14); --on-accent: #1e1529;
+  --peach: #e9a58b; --peach-soft: rgba(233, 165, 139, 0.14); --peach-ink: #f2b49c; --butter: #e7c86a; --danger: #f0907c; --danger-soft: rgba(240, 144, 124, 0.14);
+  --st-wait: #a2a6ba; --st-wait-soft: rgba(162, 166, 186, 0.14); --st-in: #5fcf97; --st-in-soft: rgba(95, 207, 151, 0.14);
+  --st-out: #86acf0; --st-out-soft: rgba(134, 172, 240, 0.15); --st-fix: #f1b357; --st-fix-soft: rgba(241, 179, 87, 0.15); --on-status: #14131b;
+  --shadow: 0 14px 34px -22px rgba(0, 0, 0, 0.8);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-peach: var(--peach);
+  --color-peach-soft: var(--peach-soft);
+  --color-peach-ink: var(--peach-ink);
+  --color-butter: var(--butter);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-st-wait: var(--st-wait);
+  --color-st-wait-soft: var(--st-wait-soft);
+  --color-st-in: var(--st-in);
+  --color-st-in-soft: var(--st-in-soft);
+  --color-st-out: var(--st-out);
+  --color-st-out-soft: var(--st-out-soft);
+  --color-st-fix: var(--st-fix);
+  --color-st-fix-soft: var(--st-fix-soft);
+  --color-on-status: var(--on-status);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --shadow-card: var(--shadow);
+}
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+::selection { background: var(--accent-soft); color: var(--foreground); }
+
+.display { font-family: var(--font-display), system-ui, sans-serif; font-weight: 800; letter-spacing: -0.02em; line-height: 1.08; text-wrap: balance; }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.figure { font-variant-numeric: tabular-nums; }
+
+:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent); outline-offset: 2px; }
+
+/* Motion */
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes sheet { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes fade { from { opacity: 0; } }
+@keyframes beat { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--st-in) 55%, transparent); } 60% { box-shadow: 0 0 0 9px transparent; } }
+@keyframes shake { 10%, 90% { transform: translateX(-1px); } 20%, 80% { transform: translateX(3px); } 30%, 50%, 70% { transform: translateX(-6px); } 40%, 60% { transform: translateX(6px); } }
+@keyframes pop { 0% { transform: scale(0.96); } 60% { transform: scale(1.02); } 100% { transform: none; } }
+.animate-rise { animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-sheet { animation: sheet 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade { animation: fade 0.2s ease-out both; }
+.animate-beat { animation: beat 2s ease-in-out infinite; }
+.animate-shake { animation: shake 0.4s ease-in-out; }
+.animate-pop { animation: pop 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise, .animate-sheet, .animate-fade, .animate-beat, .animate-shake, .animate-pop { animation: none; }
+}
+
+/* Safe areas for the installed app */
+.pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+.pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+.px-gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* Native date/time inputs: match the field style and keep a readable size (no iOS zoom). */
+input[type="date"], input[type="time"] { min-height: 3rem; }
+input, select, textarea { font-size: 16px; }
+
+/* Narrow phones: hide the desktop-style clock icon in the usual-times grid so the time fits. */
+@media (max-width: 480px) {
+  .time-compact::-webkit-calendar-picker-indicator { display: none; }
+}

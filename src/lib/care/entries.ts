@@ -139,11 +139,21 @@ export function updateEntry(data: CareData, id: Id, draft: EntryDraft, now: Date
   };
 }
 
+/** The editable part of a saved entry. */
+export function toDraft(e: Entry): EntryDraft {
+  const copy: Partial<Entry> = { ...e };
+  delete copy.id;
+  delete copy.careDate;
+  delete copy.createdAt;
+  delete copy.updatedAt;
+  delete copy.voided;
+  return copy as EntryDraft;
+}
+
 export function endNap(data: CareData, id: Id, end: Instant, now: Date): Result {
   const nap = data.entries.find((e) => e.id === id);
   if (!nap || nap.type !== "nap" || nap.voided) return fail("That nap no longer exists.");
-  const { id: _id, careDate: _c, createdAt: _cr, updatedAt: _u, voided: _v, ...draft } = nap;
-  return updateEntry(data, id, { ...draft, end }, now);
+  return updateEntry(data, id, { ...toDraft(nap), end } as EntryDraft, now);
 }
 
 export function voidEntry(data: CareData, id: Id, reason: string, now: Date): Result {

@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "node scripts/serve-static.mjs",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:tz": "TZ=America/New_York vitest run tests/unit/time.test.ts tests/unit/attendance.test.ts tests/unit/report.test.ts && TZ=Pacific/Kiritimati vitest run tests/unit/time.test.ts tests/unit/attendance.test.ts tests/unit/report.test.ts",
     "test:e2e": "playwright test --trace off",

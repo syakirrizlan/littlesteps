@@ -388,6 +388,15 @@ export async function readBackup(text: string, passcode: string): Promise<{ data
   return { data, createdAt: file.createdAt };
 }
 
+/** Characters the encrypted diary takes in this browser's storage (about 1 byte each). */
+export function storedSize(): number {
+  try {
+    return localStorage.getItem(VAULT_KEY)?.length ?? 0;
+  } catch {
+    return 0;
+  }
+}
+
 // ---------- access for the data store (only while unlocked) ----------
 
 export const vaultData = (): CareData | null => payload;

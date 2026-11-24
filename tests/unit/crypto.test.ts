@@ -54,3 +54,20 @@ describe("passcode encryption", () => {
     expect(passcodeStrength("teh tarik at 7").score).toBe(3);
   });
 });
+
+describe("compression", () => {
+  it("compresses before encrypting and still opens records saved without compression", async () => {
+    const salt = randomBytes(16);
+    const key = await deriveKey("pass1234", salt, FAST);
+    const big = { notes: Array.from({ length: 500 }, (_, i) => `Lunch: rice and chicken, ate most (${i})`) };
+    const record = await seal(big, key, salt, FAST);
+    expect(record.z).toBe("gzip");
+    expect(record.ct.length).toBeLessThan(JSON.stringify(big).length / 4);
+    await expect(open(record, key)).resolves.toEqual(big);
+    // A record written without compression (older format) still opens.
+    const iv = randomBytes(12);
+    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, new TextEncoder().encode(JSON.stringify({ old: true }))));
+    const plain = { v: 1 as const, kdf: "PBKDF2-SHA256" as const, iterations: FAST, salt: record.salt, iv: btoa(String.fromCharCode(...iv)), ct: btoa(String.fromCharCode(...ct)) };
+    await expect(open(plain, key)).resolves.toEqual({ old: true });
+  });
+});

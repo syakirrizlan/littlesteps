@@ -9,7 +9,7 @@ import type { CareData, PersonRole } from "@/lib/care/types";
 import { saveFile } from "@/lib/files";
 import { isStandalone, promptInstall, useCanInstall } from "@/lib/pwa";
 import { AUTO_LOCK_CHOICES, setAutoLockMinutes, useAutoLockMinutes } from "@/lib/security/autolock";
-import { changePasscode, eraseEverything, lock, makeBackup, NotABackupError, passcodeProblem, readBackup, WrongPasscodeError } from "@/lib/security/vault";
+import { changePasscode, eraseEverything, lock, makeBackup, NotABackupError, passcodeProblem, readBackup, storedSize, WrongPasscodeError } from "@/lib/security/vault";
 import { Button, Card, cx, ErrorText, Field, inputClass } from "./ui";
 
 const DAYS = [
@@ -406,6 +406,7 @@ export function BackupSection({ data, onToast, restoreOnly = false }: { data: Ca
         </div>
       )}
       {msg && <Note ok={msg.ok}>{msg.text}</Note>}
+      {!restoreOnly && <p className="text-xs text-muted">The diary uses {Math.max(1, Math.round(storedSize() / 1024))} KB on this phone. Browsers allow about 5 MB; a busy year takes about 0.3 MB.</p>}
     </Section>
   );
 }
